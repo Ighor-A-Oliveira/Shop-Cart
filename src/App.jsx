@@ -6,7 +6,7 @@ import Home from './Page/Home'
 function App() {
 
   return (
-    <div className='w-screen h-screen'>
+    <div className='w-full h-screen overflow-x-hidden'>
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route index element={<Home/>} />

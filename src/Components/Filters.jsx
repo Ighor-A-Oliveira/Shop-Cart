@@ -7,7 +7,7 @@ const Filters = () => {
   } = CartState();
 
   return (
-    <div className=" bg-gray-600 flex  w-[20%] m-[10px] h-[86vh] text-whiteflex flex-col gap-3 p-4 border rounded shadow-md max-w-xs text-sm">
+    <div className=" bg-gray-600 flex  w-[20%] m-[10px] h-[86vh] text-white flex-col gap-3 p-4 border rounded shadow-md max-w-xs text-sm">
       <span className="text-lg font-semibold pb-[20px]">Filter Products</span>
 
       <label className="inline-flex items-center gap-2">

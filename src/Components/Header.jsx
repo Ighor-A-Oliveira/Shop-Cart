@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { FaShoppingCart } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { CartState } from '../Context/Context';
+import DropDownMenu from './DropDownMenu';
 
 
 export default function Header() {
+    const {state: {cart}, } = CartState()
     const [isOpen, setIsOpen] = useState(false)
   return (
-    <div className='h-[8    0px] w-screen bg-black flex items-center justify-center'>
+    <div className='h-[80px] w-full bg-black flex items-center justify-center'>
         <div className='w-[90%] py-[15px] flex items-center justify-between'>
             <div className='text-white md:w-1/3'>
                 <a href="/">Shopping Cart</a>
@@ -19,16 +22,11 @@ export default function Header() {
                     onClick={() => {setIsOpen(!isOpen)}}
                 >
                     <FaShoppingCart color='white' size={"20"} />  
-                    <div className='pl-1 pr-2 text-xs select-none text-white' >0</div>
+                    <div className='pl-1 pr-2 text-xs select-none text-white' >{cart.length}</div>
                     <IoMdArrowDropdown color='white' size={"15"} />
-                    {isOpen && 
-                        <div className='absolute bg-white w-[150px] top-[40px] right-[0px] outline-1 outline-black min-w-[350px] select-text text-black p-2 py-4 shadow-md duration-200'
-                            onMouseLeave={() => {setIsOpen(false)}}
-                            onClick={(e) => e.stopPropagation()} // prevent dropdown from instantly closing but links should still work
-                        >
-                            <span className=''>Cart is empty!</span>
-                        </div>
-                    }
+                    
+                    {/* controls the dropdown menu */}
+                    <DropDownMenu isOpen={isOpen} setIsOpen={setIsOpen} cart={cart}/>
                 </button>
             </div>
         </div>
