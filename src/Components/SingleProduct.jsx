@@ -8,11 +8,11 @@ export default function SingleProduct({key, prod}) {
     //useEffect(() => {console.log(cart)},[cart])
 
   return (
-    <div className='max-w-[30%] m-[10px] border-gray-50 duration-300  border-1 shadow-md hover:shadow-2xl pb-[15px]' key={key}>
+    <div className='min-w-[90%] sm:min-w-[150px] sm:max-w-[200px] lg:max-w-[30%] lg:min-w-[300px] m-[10px] border-gray-50 duration-300  border-1 shadow-md hover:shadow-2xl pb-[15px]' key={key}>
         <div>
-            <img src={prod.image} alt={prod.name} />
+            <img className='w-full' src={prod.image} alt={prod.name} />
             <div className='ml-[10px]'>
-                <h1 className='text-xl'>{prod.name}</h1>
+                <h1 className="text-xl w-full h-[28px] truncate" alt={prod.name}>{prod.name}</h1>
                 <div className='pb-[10px]'>
                     <span>R$ {prod.price.split(".")[0]}</span>
                     {prod.fastDelivery ?

@@ -3,42 +3,52 @@ import { CartState } from "../Context/Context";
 
 const Filters = () => {
   const {
-       state: { byStock, byFastDelivery, sort, byRating },
+    productDispatch,
+    productState: {  byFastDelivery, sort, byRating },
   } = CartState();
 
   return (
-    <div className=" bg-gray-600 flex  w-[20%] m-[10px] h-[86vh] text-white flex-col gap-3 p-4 border rounded shadow-md max-w-xs text-sm">
+    <div className=" bg-black hidden md:flex md:w-[200px] lg:w-[20%] m-[10px] h-[86vh] text-white flex-col gap-3 p-4 border rounded shadow-md max-w-xs text-sm">
       <span className="text-lg font-semibold pb-[20px]">Filter Products</span>
 
       <label className="inline-flex items-center gap-2">
         <input
           type="radio"
           name="sort"
-          checked={sort === "lowToHigh"}
+          checked={sort === "lowToHigh" ? true : false}
+          onChange={() =>
+            productDispatch({
+              type: "SORT_BY_PRICE",
+              payload: "lowToHigh",
+            })
+          }
         />
-        <span>Ascending</span>
+        <span>Ascending Price</span>
       </label>
 
       <label className="inline-flex items-center gap-2">
         <input
           type="radio"
           name="sort"
-          checked={sort === "highToLow"}
+          onChange={() =>
+            productDispatch({
+              type: "SORT_BY_PRICE",
+              payload: "highToLow",
+            })
+          }
+          checked={sort === "highToLow" ? true : false}
         />
-        <span>Descending</span>
+        <span>Descending Price</span>
       </label>
 
       <label className="inline-flex items-center gap-2">
         <input
           type="checkbox"
-          checked={byStock}
-        />
-        <span>Include Out of Stock</span>
-      </label>
-
-      <label className="inline-flex items-center gap-2">
-        <input
-          type="checkbox"
+          onChange={() =>
+            productDispatch({
+              type: "FILTER_BY_DELIVERY",
+            })
+          }
           checked={byFastDelivery}
         />
         <span>Fast Delivery Only</span>
@@ -49,11 +59,22 @@ const Filters = () => {
         <Rating
           rating={byRating}
           style={{ cursor: "pointer" }}
+          onClick={(i) =>
+            productDispatch({
+              type: "FILTER_BY_RATING",
+              payload: i + 1,
+            })
+          }
         />
       </div>
  
       <button
-        className="mt-2 px-3 py-1 bg-gray-100 border rounded hover:bg-gray-200 select-none"
+        className="mt-2 px-3 py-2 bg-gray-100 border rounded hover:bg-gray-200 select-none text-black"
+        onClick={() =>
+          productDispatch({
+            type: "CLEAR_FILTERS",
+          })
+        }
       >
         Clear Filters
       </button>
