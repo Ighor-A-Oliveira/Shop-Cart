@@ -1,4 +1,4 @@
-# 📌 Shjjop-Cart
+# 📌 Shop-Cart
 
 Projeto de um site de e-commerce com um component de carrinho de compras funcional
 
